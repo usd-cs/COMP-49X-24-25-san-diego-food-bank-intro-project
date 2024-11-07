@@ -1,50 +1,36 @@
 -- 1. Create the database (run this if database does not exist)
 
 -- Uncomment the following lines if you need to create the database
--- CREATE DATABASE project_database;
+-- CREATE DATABASE sb_foodbank_intro_project_database;
 
 -- 2. Connect to the database: \c sd_foodbank_database;
 --                    
 
 -- 3. Create Tables
-CREATE TABLE IF NOT EXISTS "user" (
+CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    phone_number BIGINT,
-    email VARCHAR(255) UNIQUE
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(20) DEFAULT 'user' 
 );
 
-CREATE TABLE IF NOT EXISTS appointment (
-    appointment_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES "user" (user_id) ON DELETE CASCADE,
-    appointment_time TIMESTAMP NOT NULL,
-    updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS posts (
+    post_id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(user_id) ON DELETE SET NULL,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS conversation_logs (
-    log_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES "user" (user_id) ON DELETE SET NULL,
-    option_id INT REFERENCES bot_choices (option_id) ON DELETE SET NULL,
-    start_time TIMESTAMP NOT NULL,
-    end_time TIMESTAMP,
-    speech_to_text TEXT,
-    decision VARCHAR(255),
-    intent VARCHAR(255)
-);
-
-CREATE TABLE IF NOT EXISTS bot_choices (
-    option_id SERIAL PRIMARY KEY,
-    option_text TEXT NOT NULL,
-    intent VARCHAR(255),
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS faq (
-    faq_id SERIAL PRIMARY KEY,
-    language VARCHAR(10),
-    question TEXT NOT NULL,
-    answer TEXT NOT NULL,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS comments (
+    comment_id SERIAL PRIMARY KEY,
+    post_id INT REFERENCES posts(post_id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(user_id) ON DELETE SET NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- If we want to insert some sample data for testing:
