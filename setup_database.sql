@@ -17,20 +17,20 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS posts (
     post_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id) ON DELETE SET NULL,
+    user_id INT REFERENCES users(user_id),
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP 
 );
 
 CREATE TABLE IF NOT EXISTS comments (
     comment_id SERIAL PRIMARY KEY,
-    post_id INT REFERENCES posts(post_id) ON DELETE CASCADE,
-    user_id INT REFERENCES users(user_id) ON DELETE SET NULL,
+    post_id INT REFERENCES posts(post_id),
+    user_id INT REFERENCES users(user_id),
     content TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP 
 );
 
 -- If we want to insert some sample data for testing:
