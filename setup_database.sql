@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS posts (
     post_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
     contents TEXT,
-    created_at TIMESTAMP,
+    created_at TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS comments (
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS comments (
     post_id INT REFERENCES posts(post_id),
     user_id INT REFERENCES users(user_id),
     contents TEXT,
-    created_at TIMESTAMP,
+    created_at TIMESTAMP
 );
 
 -- If we want to insert some sample data for testing:
