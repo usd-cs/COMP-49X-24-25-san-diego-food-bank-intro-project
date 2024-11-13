@@ -3,7 +3,9 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(response):
-    return HttpResponse("This is the home/login page.")
+    return render(response, "main/header.html", {})
+def home(response):
+    return render(response, "main/home.html", {})
 def posts(response):
     return HttpResponse("This is the posts page.")
 def post(response):
