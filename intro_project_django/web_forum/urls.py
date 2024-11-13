@@ -3,10 +3,9 @@
 from django.urls import path
 from . import views
 
-"""
+
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("posts/", views.posts, name="posts"),
-    path("post/", views.post, name="post"),
+    path("", views.home_view, name="home"),
+    path("post/", views.post_view, name="post"),
+    path("create_post/", views.create_post_view, name="create post"),
 ]
-"""
