@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Log in to your account</h2>
+        <p>Welcome back! Please enter your details.</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button type="submit">Sign in</button>
+        </form>
+    </div>
+</body>
+</html>
