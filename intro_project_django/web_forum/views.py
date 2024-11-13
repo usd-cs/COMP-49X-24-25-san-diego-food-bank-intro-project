@@ -22,14 +22,14 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-def home_view(request):
+def home_view():
     """Placeholder view for the home page."""
     return HttpResponse("Welcome to the home page.")
 
-def post_view(request):
+def post_view():
     """Placeholder view for viewing a post."""
     return HttpResponse("This is a post view.")
 
-def create_post_view(request):
+def create_post_view():
     """Placeholder view for creating a new post."""
     return HttpResponse("This is the create post view.")
