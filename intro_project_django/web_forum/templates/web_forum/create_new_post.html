@@ -10,7 +10,7 @@
         <form method="post" action="{% url 'create post' %}">
             {% csrf_token %}
             <div class="form-group">
-                <textarea name="content" class="post-input" placeholder="Autosize height based on content lines" maxlength="1000"></textarea>
+                <textarea name="content" class="post-input" placeholder="Type your post here" maxlength="1000"></textarea>
                 <div class="char-count">0 / 1000</div>
             </div>
             <button type="submit" class="add-post-button">Add Post</button>
