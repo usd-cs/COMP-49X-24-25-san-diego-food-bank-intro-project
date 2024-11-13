@@ -9,8 +9,8 @@ def login_view(request):
     """
     Properly handle user login by displaying the login form and processing the user authentication.
 
-    This view will display the login form for users to input their email and password. It will validate
-    the user's credentials and log them in where they will be redirected to the home page.
+    This view will display the login form for users to input their email and password. It will
+    validate the user's credentials and log them in, then redirect them to the home page.
     """
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -22,12 +22,12 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-def header(response):
-    return render(response, "main/header.html", {})
+def header(request):
+    return render(request, "web_forum/header.html", {})
 
-def home_view(response):
+def home_view(request):
     """Placeholder view for the home page."""
-    return render(response, "main/home.html", {})
+    return render(request, "web_forum/home.html", {})
 
 def post_view():
     """Placeholder view for viewing a post."""
