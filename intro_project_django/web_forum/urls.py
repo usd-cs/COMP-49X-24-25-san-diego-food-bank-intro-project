@@ -1,4 +1,5 @@
-"""Temp docstring for linting"""
+"""This module contains URL routing for the web forum application."""
+
 from django.urls import path
 from . import views
 
