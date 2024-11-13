@@ -25,7 +25,7 @@ def login_view(request):
 def header(response):
     return render(response, "main/header.html", {})
 
-def home_view():
+def home_view(response):
     """Placeholder view for the home page."""
     return render(response, "main/home.html", {})
 

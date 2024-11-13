@@ -5,8 +5,8 @@ from . import views
 
 """
 urlpatterns = [
-    
-    path("", views.home, name="home"),
-    path("post/", views.post, name="post"),
+
+    path("", views.home_view, name="home_view"),
+    path("post/", views.post_view, name="post_view"),
 ]
 """
