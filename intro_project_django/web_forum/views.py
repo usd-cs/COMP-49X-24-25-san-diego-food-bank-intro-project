@@ -29,10 +29,10 @@ def home_view(request):
     """Placeholder view for the home page."""
     return render(request, "web_forum/home.html", {})
 
-def post_view():
+def post_view(request):
     """Placeholder view for viewing a post."""
-    return HttpResponse("This is a post view.")
+    return render(request, HttpResponse("This is a post view."))
 
-def create_post_view():
+def create_post_view(request):
     """Placeholder view for creating a new post."""
-    return HttpResponse("This is the create post view.")
+    return render(request, HttpResponse("This is the create post view."))

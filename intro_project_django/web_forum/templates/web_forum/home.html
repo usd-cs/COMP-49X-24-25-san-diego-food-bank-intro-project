@@ -1,2 +1,22 @@
 {% extends 'web_forum/header.html' %}
+{% load static %}
 
+{% block content %}
+<div class="posts-container">
+    {% for post in posts %}
+        <div class="post">
+            <div class="post-header">
+                <span class="author">{{ post.author }}</span>
+                <span class="date">{{ post.date|timesince }} ago</span>
+            </div>
+            <p class="content">{{ post.content }}</p>
+        </div>
+    {% empty %}
+        <p>No posts available.</p>
+    {% endfor %}
+</div>
+
+<div class="create-post">
+    <a href="{% url 'create post' %}" class="create-post-button">Create New Post</a>
+</div>
+{% endblock %}
