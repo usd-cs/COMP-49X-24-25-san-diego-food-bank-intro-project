@@ -1,11 +1,9 @@
 """Temp docstring for linting"""
 
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import redirect, render
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import redirect, render
 
 def login_view(request):
     """
@@ -14,19 +12,24 @@ def login_view(request):
     This view will display the login form for users to input their email and password. It will validate
     the user's credentials and log them in where they will be redirected to the home page.
     """
-    if request.method == 'POST': # Make sure the request is 'POST' to ensure user submits form to be processed
-        form = AuthenticationForm(data = request.POST) 
-        if form.is_valid(): 
-            user = form.get_user() # Retrieve the user if form is valid
-            login(request, user) 
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
             return redirect('home')
+    else:
+        form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
 def home_view(request):
-    pass # Setup later
+    """Placeholder view for the home page."""
+    return HttpResponse("Welcome to the home page.")
 
 def post_view(request):
-    pass # Setup later
+    """Placeholder view for viewing a post."""
+    return HttpResponse("This is a post view.")
 
 def create_post_view(request):
-    pass # Setup later
+    """Placeholder view for creating a new post."""
+    return HttpResponse("This is the create post view.")
