@@ -22,8 +22,9 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-def header(request):
-    return render(request, "web_forum/header.html", {})
+def navigation_bar(request):
+    """Contains the html data for the navigation bar."""
+    return render(request, "web_forum/navigation_bar.html", {})
 
 def home_view(request):
     """Placeholder view for the home page."""
