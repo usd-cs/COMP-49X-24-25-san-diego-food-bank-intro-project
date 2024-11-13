@@ -7,7 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 def login_view(request):
     """
-    Properly handle user login by displaying the login form and processing the user authentication.
+    Handle user login by displaying login form and processing user authentication.
 
     This view will display the login form for users to input their email and password. It will validate
     the user's credentials and log them in where they will be redirected to the home page.
