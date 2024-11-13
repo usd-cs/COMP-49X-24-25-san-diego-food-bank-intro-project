@@ -11,4 +11,3 @@ class WebForumConfig(AppConfig):
         """
         Perform any application-specific startup tasks.
         """
-        pass
