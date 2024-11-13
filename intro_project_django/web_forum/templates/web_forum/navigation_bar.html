@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Forum</title>
+  
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+  <style>
+    /* Reset margin and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* Body styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+    
+    /* Header styling */
+    .header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    /* Gear icon styling (placeholder for actual icon) */
+    .gear-icon {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <div class="header">
+    Web Forum
+    <span class="gear-icon">⚙️</span> <!-- Placeholder gear icon (can replace with actual image or font icon) -->
+  </div>
+
+  <!-- Content Block for Other Templates to Extend -->
+  {% block content %}
+  {% endblock %}
+
+</body>
+</html>

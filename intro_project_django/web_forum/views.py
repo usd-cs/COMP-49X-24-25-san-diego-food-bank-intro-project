@@ -22,14 +22,18 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-def home_view():
+def navigation_bar(request):
+    """Contains the html data for the navigation bar."""
+    return render(request, "web_forum/navigation_bar.html", {})
+
+def home_view(request):
     """Placeholder view for the home page."""
-    return HttpResponse("Welcome to the home page.")
+    return render(request, "web_forum/home.html", {})
 
-def post_view():
+def post_view(request):
     """Placeholder view for viewing a post."""
-    return HttpResponse("This is a post view.")
+    return render(request, HttpResponse("This is a post view."))
 
-def create_post_view():
+def create_post_view(request):
     """Placeholder view for creating a new post."""
-    return HttpResponse("This is the create post view.")
+    return render(request, HttpResponse("This is the create post view."))
