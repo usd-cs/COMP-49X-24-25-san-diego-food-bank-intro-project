@@ -1,7 +1,10 @@
 from django.test import TestCase
 from .models import User, Post, Comment
 from django.urls import reverse
-"""Temp docstring for linting"""
+import django
+from django.conf import settings
+
+"""Tests for web forum app"""
 
 class UserModelTest(TestCase):
     def test_user_creation(self):
