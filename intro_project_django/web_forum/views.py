@@ -1,7 +1,7 @@
 """Temp docstring for linting"""
 
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Post
@@ -36,9 +36,10 @@ def post_view(request):
     """Placeholder view for viewing a post."""
     return render(request, HttpResponse("This is a post view."))
 
-def reply_view(request):
+def reply_view(request, post_id):
     """Goes to webpage to reply to a specific post and see other comments as well."""
-    return render(request, "web_forum/reply_post.html", {})
+    post = get_object_or_404(Post, id = post_id)
+    return render(request, "web_forum/reply_post.html", {'post': post})
 
 def create_post_view(request):
     """Page for creating a new post. The add post button adds the 
