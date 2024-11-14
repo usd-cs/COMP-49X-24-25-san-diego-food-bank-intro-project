@@ -56,3 +56,22 @@ class LoginViewTest(TestCase):
         })
 
         self.assertRedirects(response, reverse('home'))
+    
+    def test_unsuccessful_login(self):
+        # Test login with a username that doesn't exist 
+        response = self.client.post(reverse('login'), {
+            'username': 'nonexistantuser',
+            'password': 'password123',
+        })
+
+        # Log in page should have an error 
+        self.assertEqual(response.status_code, 200)
+
+class HomeViewTest(TestCase):
+    def setUp(self):
+        # Create regular user and an admin user
+        self.user = User.objects.create_user(username="testuser", password="password123")
+        self.admin_user = User.objects.create_user(username='adminuser', password='adminpass', admin=True)
+
+        # Create post as regular user 
+        self.post = Post.objects.create(user=self.user, contents='This is a test post')
