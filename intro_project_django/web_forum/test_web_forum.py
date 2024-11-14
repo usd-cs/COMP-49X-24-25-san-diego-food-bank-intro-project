@@ -40,8 +40,10 @@ class PostModelTest(TestCase):
         response = self.client.post(reverse('delete', args=[self.post.id]))
         
         self.assertFalse(Post.objects.filter(id=self.post.id).exists())
+
         self.assertFalse(Comment.objects.filter(id=comment1.id).exists())
         self.assertFalse(Comment.objects.filter(id=comment2.id).exists())
+        
         self.assertRedirects(response, reverse('home'))
 
 class CommentModelTest(TestCase):
