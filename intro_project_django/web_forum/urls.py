@@ -9,6 +9,6 @@ urlpatterns = [
     path("post/", views.post_view, name="post"),
     path("create_post/", views.create_post_view, name="create post"),
     path("single_post/", views.post_view, name="single post"),
-    path("single_post/loaded_comments/", views.loaded_comments_view, name="loaded comments")
+    path("single_post/loaded_comments/", views.loaded_comments_view, name="loaded comments") #implementing this next
     # path("login/", views.login_view name="login")  Running into some sort of syntax error here
 ]

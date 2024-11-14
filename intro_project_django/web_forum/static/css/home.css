@@ -1,4 +1,5 @@
-.posts-container, .posts-container {
+/*May rename post-container into posts-container*/
+.posts-container, .post-container {
     padding: 20px;
 }
 

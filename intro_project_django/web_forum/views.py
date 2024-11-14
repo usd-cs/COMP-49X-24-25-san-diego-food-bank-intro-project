@@ -34,6 +34,7 @@ def post_view(request):
     """Placeholder view for viewing a post."""
     return render(request, "web_forum/single_post.html", {"post": post_object})
 
+"""Implementing this next"""
 def loaded_comments_view(request):
     """Placedholder view for loaded comments"""
     return render(request, HttpResponse("This is the loaded comments page."))
