@@ -21,7 +21,7 @@ def login_view(request):
             return redirect('home')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'web_forum/login.html', {'form': form})
 
 def navigation_bar(request):
     """Contains the html data for the navigation bar."""
