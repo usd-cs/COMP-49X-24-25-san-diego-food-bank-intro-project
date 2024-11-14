@@ -1,0 +1,17 @@
+{% extends "web_forum/navigation_bar.html" %}
+{% load static %}
+
+{% block content %}
+<div class="post-container">
+    <div class="post">
+            <div class="post-header">
+                <span class="author">{{ post.author }}</span>
+            </div>
+            <p class="content">{{ post.content }}</p>
+        </div>
+</div>
+
+<div class="load-comments">
+    <a href="{% url 'loaded comments' %}" class="load-comments-button">Load Comments</a>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-.posts-container {
+.posts-container, .posts-container {
     padding: 20px;
 }
 
@@ -15,12 +15,12 @@
     margin-bottom: 5px;
 }
 
-.create-post {
+.create-post, .load-comments {
     text-align: center;
     margin: 20px 0;
 }
 
-.create-post-button {
+.create-post-button, .load-comments-button {
     display: inline-block;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -30,6 +30,6 @@
     font-weight: bold;
 }
 
-.create-post-button:hover {
+.create-post-button:hover, .load-comments-button:hover {
     background-color: #45a049;
 }
