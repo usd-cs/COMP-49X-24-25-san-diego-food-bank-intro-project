@@ -34,6 +34,10 @@ def post_view(request):
     """Placeholder view for viewing a post."""
     return render(request, HttpResponse("This is a post view."))
 
+def reply_view(request, post_id):
+    """Goes to webpage to reply to a specific post and see other comments as well."""
+    return render(request, "web_forum/reply_post.html", {})
+
 def create_post_view(request):
     """Page for creating a new post. The add post button adds the 
     inputted text to the database as a post object. Return to home

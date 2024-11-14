@@ -1,0 +1,55 @@
+
+{% extends 'web_forum/navigation_bar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/reply_post.css' %}">
+
+<div class="reply-container">
+    <!-- Main Post Section -->
+    <div class="post">
+        <div class="post-header">
+            <span class="author">{{ post.author }}</span>
+            <span class="date">{{ post.date|timesince }} ago</span>
+        </div>
+        <p class="content">{{ post.content }}</p>
+    </div>
+
+    <!-- Reply Form Section -->
+    <div class="reply-form">
+        <label for="comment">Reply to</label>
+        <form method="post" action="{% url 'add_comment' post.id %}">
+            {% csrf_token %}
+            <textarea name="comment" id="comment" placeholder="Autosize height based on content lines" maxlength="100"></textarea>
+            <div class="char-count">0 / 100</div>
+            <button type="submit" class="add-comment-button">Add Comment</button>
+        </form>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="comments">
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="author">{{ comment.author }}</span>
+                    <span class="date">{{ comment.date|timesince }} ago</span>
+                </div>
+                <p class="content">{{ comment.content }}</p>
+            </div>
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    const commentInput = document.getElementById('comment');
+    const charCount = document.querySelector('.char-count');
+
+    commentInput.addEventListener('input', () => {
+        charCount.textContent = `${commentInput.value.length} / 100`;
+        commentInput.style.height = 'auto';
+        commentInput.style.height = commentInput.scrollHeight + 'px';
+    });
+</script>
+{% endblock %}
