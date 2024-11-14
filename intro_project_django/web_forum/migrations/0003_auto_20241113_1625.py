@@ -5,9 +5,6 @@ from web_forum.models import User
 
 def create_base_users(apps, schema_editor):
     """Creates 2 base users in the User table"""
-    
-    _apps = apps
-    _schema_editor = schema_editor
 
     User.objects.create_user(
         username= 'Billy Bob',
