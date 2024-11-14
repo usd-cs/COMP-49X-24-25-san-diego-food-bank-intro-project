@@ -47,6 +47,15 @@ def reply_view(request, post_id):
         comment_info.save()
     return render(request, "web_forum/reply_post.html", {'post': post, 'comments': comments})
 
+def delete_comment_view(request, comment_id):
+    """Deletes comment from db then returns to post page with updated feed"""
+    comment = get_object_or_404(Comment, id = comment_id)
+    post_id = comment.post_id
+    comment.delete()
+    return reply_view(request, post_id)
+
+    return redirect(f"reply/{post_id}/")
+
 def delete_post_view(request, post_id):
     """Deletes post from db then returns to home page with updated feed"""
     post = get_object_or_404(Post, id = post_id)
