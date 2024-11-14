@@ -11,5 +11,6 @@ urlpatterns = [
     path("create_post/", views.create_post_view, name="create post"),
     path("login/", views.login_view, name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
-    path('reply/', views.reply_view, name='reply'),
+    path('reply/<int:post_id>/', views.reply_view, name='reply'),
+    path('delete/<int:post_id>/', views.delete_post_view, name="delete")
 ]
