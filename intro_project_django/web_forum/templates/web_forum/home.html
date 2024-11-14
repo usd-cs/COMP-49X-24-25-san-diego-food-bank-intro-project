@@ -4,22 +4,24 @@
 {% block content %}
 <div class="posts-container">
     {% for post in posts %}
-        <div class="post">
-            <div class="post-header">
-                <span class="author">{{ post.user.username }}</span>
-                <span class="date">{{ post.created_at|timesince }} ago</span>
-            </div>
-            <p class="content">{{ post.contents }}</p>
-            
-            <div class="button-container">
-                {% if request.user.is_authenticated and request.user.admin %}
-                <a href="{% url 'delete' post.id %}" class ="delete-post-button">Delete</a>
-                {% endif %}
-                {% if request.user.is_authenticated and not request.user.admin %}
-                <a href="{% url 'reply' post.id %}" class="reply-post-button">Reply</a>
-                {% endif %}
-            </div>
-        </div>
+      <div class="post">
+        <a href="{% url 'reply' post.id %}" style="text-decoration: none;">
+          <div class="post-header">
+              <span class="author">{{ post.user.username }}</span>
+              <span class="date">{{ post.created_at|timesince }} ago</span>
+          </div>
+          <p class="content">{{ post.contents }}</p>
+
+          <div class="button-container">
+              {% if request.user.is_authenticated and request.user.admin %}
+              <a href="{% url 'delete' post.id %}" class ="delete-post-button">Delete</a>
+              {% endif %}
+              {% if request.user.is_authenticated and not request.user.admin %}
+              <a href="{% url 'reply' post.id %}" class="reply-post-button">Reply</a>
+              {% endif %}
+          </div>
+        </a>
+      </div>
     {% empty %}
         <p>No posts available.</p>
     {% endfor %}

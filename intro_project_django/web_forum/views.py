@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Post
+from .models import Post, Comment
 
 def login_view(request):
     """
@@ -39,9 +39,16 @@ def post_view(request):
 def reply_view(request, post_id):
     """Goes to webpage to reply to a specific post and see other comments as well."""
     post = get_object_or_404(Post, id = post_id)
-    return render(request, "web_forum/reply_post.html", {'post': post})
+    comments = Comment.objects.filter(post_id=post_id).order_by('-created_at')
+    if request.method == 'POST':
+      content = request.POST.get('comment')
+      if content:
+        comment_info = Comment(contents=content, user_id = request.user.id, post_id=post_id)
+        comment_info.save()
+    return render(request, "web_forum/reply_post.html", {'post': post, 'comments': comments})
 
 def delete_post_view(request, post_id):
+    """Deletes post from db then returns to home page with updated feed"""
     post = get_object_or_404(Post, id = post_id)
     post.delete()
     return redirect('home')
