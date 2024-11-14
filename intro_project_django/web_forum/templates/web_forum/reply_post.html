@@ -7,16 +7,22 @@
 
 <div class="reply-container">
     <!-- Main Post Section -->
+     
     <div class="post">
         <div class="post-header">
             <span class="author">{{ post.user.username }}</span>
             <span class="date">{{ post.created_at|timesince }} ago</span>
         </div>
         <p class="content">{{ post.contents }}</p>
+        {% if request.user.is_authenticated and request.user.admin %}
+        <div class="button-container">
+            <a href="{% url 'delete' post.id %}" class ="delete-button">Delete</a>
+        </div>
+        {% endif %}
     </div>
 
     <!-- Reply Form Section -->
-    {% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated and not request.user.admin %}
     <div class="reply-form">
         <label for="comment">Reply to</label>
         <form method="post" action="{% url 'reply' post.id %}">
@@ -37,6 +43,12 @@
                     <span class="date">{{ comment.created_at|timesince }} ago</span>
                 </div>
                 <p class="content">{{ comment.contents }}</p>
+
+                {% if request.user.is_authenticated and request.user.admin %}
+                <div class="button-container">
+                    <a href="{% url 'delete comment' comment.id %}" class ="delete-button">Delete</a>
+                </div>
+                {% endif %}
             </div>
         {% empty %}
             <p>No comments yet.</p>
