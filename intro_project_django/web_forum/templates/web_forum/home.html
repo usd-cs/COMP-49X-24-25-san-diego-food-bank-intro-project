@@ -16,7 +16,9 @@
     {% endfor %}
 </div>
 
+{% if request.user.is_authenticated %}
 <div class="create-post">
     <a href="{% url 'create post' %}" class="create-post-button">Create New Post</a>
 </div>
+{% endif %}
 {% endblock %}

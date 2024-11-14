@@ -10,6 +10,5 @@ urlpatterns = [
     path("post/", views.post_view, name="post"),
     path("create_post/", views.create_post_view, name="create post"),
     path("login/", views.login_view, name="login"),
-    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
-    # path("login/", views.login_view name="login")  Running into some sort of syntax error here
+    path('logout/', auth_views.LogoutView.as_view(), name='logout')
 ]
