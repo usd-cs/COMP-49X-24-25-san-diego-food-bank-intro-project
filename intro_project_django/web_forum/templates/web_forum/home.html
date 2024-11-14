@@ -3,22 +3,21 @@
 
 {% block content %}
 <div class="posts-container">
-   {% for post in posts %}
-       <div class="post">
-           <div class="post-header">
-               <span class="author">{{ post.author }}</span>
-               <span class="date">{{ post.date|timesince }} ago</span>
-           </div>
-           <p class="content">{{ post.content }}</p>
+    {% for post in posts %}
+        <div class="post">
+                <div class="post-header">
+                    <span class="author">{{ post.user.username }}</span>
+                    <span class="date">{{ post.created_at|timesince }} ago</span>
+                </div>
+                <p class="content">{{ post.contents }}</p>
 
-           <!-- Reply button to go to reply_post page for this post -->
-           <div class="reply-button">
-               <a href="{% url 'reply_post' post.id %}" class="reply-post-button">Reply</a>
-           </div>
-       </div>
-   {% empty %}
-       <p>No posts available.</p>
-   {% endfor %}
+                <div class="reply-button">
+                    <a href="{% url 'reply_post' post.id %}" class="reply-post-button">Reply</a>
+                </div>
+        </div>
+    {% empty %}
+        <p>No posts available.</p>
+    {% endfor %}
 </div>
 
 <div class="create-post">

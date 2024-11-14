@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Post
 
 def login_view(request):
     """
@@ -28,7 +29,8 @@ def navigation_bar(request):
 
 def home_view(request):
     """Placeholder view for the home page."""
-    return render(request, "web_forum/home.html", {})
+    posts = Post.objects.all().order_by('-created_at')
+    return render(request, "web_forum/home.html", {'posts' : posts})
 
 def post_view(request):
     """Placeholder view for viewing a post."""
@@ -42,10 +44,11 @@ def create_post_view(request):
     """Page for creating a new post. The add post button adds the 
     inputted text to the database as a post object. Return to home
     page after adding post."""
-    # if request.method == 'POST':
-    #     content = request.POST.get('content')
-    #     if content:
-    #         Post.objects.create(content=content)
-    #         return redirect('home')  # Redirect to home page after creating a post
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        if content:
+            post = Post(contents=content)
+            post.save()
+            return redirect('home')  # Redirect to home page after creating a post
     # Render the create post page if GET request
     return render(request, 'web_forum/create_new_post.html')
