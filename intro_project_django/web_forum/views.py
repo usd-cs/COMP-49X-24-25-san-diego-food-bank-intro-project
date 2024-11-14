@@ -50,6 +50,9 @@ def reply_view(request, post_id):
 def delete_post_view(request, post_id):
     """Deletes post from db then returns to home page with updated feed"""
     post = get_object_or_404(Post, id = post_id)
+    comments = Comment.objects.filter(post_id=post_id)
+    for comment in comments:
+        comment.delete()
     post.delete()
     return redirect('home')
 
