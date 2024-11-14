@@ -39,49 +39,22 @@
     }
     
     /* Gear icon styling (placeholder for actual icon) */
-    .gear-icon {
+    .login-button {
       position: absolute;
       top: 10px;
       right: 20px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    /* Dropdown menu styling */
-    .dropdown {
-      display: none; /* Hidden by default */
-      position: absolute;
-      right: 20px;
-      top: 40px;
-      background-color: white;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-      border-radius: 4px;
-    }
-
-    .dropdown button,
-    .dropdown a {
       font-size: 16px;
-      padding: 8px 16px;
-      color: #4CAF50;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
-      display: inline-block;
+      padding: 6px 12px;
+      color: white;
+      background-color: #4CAF50;
+      border: 1px solid white;
       border-radius: 4px;
-      background: none;
-      border: none;
+      cursor: pointer;
+      text-decoration: none;
     }
 
-    .dropdown button:hover,
-    .dropdown a:hover {
-      color: #45a049;
-      text-decoration: underline;
-    }
-
-    /* Show the dropdown when active */
-    .dropdown.active {
-      display: block;
+    .login-button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
@@ -90,43 +63,20 @@
   <!-- Header Section -->
   <div class="header">
     <a href="{% url 'home' %}">Web Forum</a>
-    <!-- Settings icon button -->
-    <span class="gear-icon" onclick="toggleDropdown()">⚙️</span>
-
-    <!-- Dropdown menu for login/logout -->
-    <div id="dropdownMenu" class="dropdown">
-      {% if user.is_authenticated %}
-        <form method="POST" action="{% url 'logout' %}">
-          {% csrf_token %}
-          <button type="submit">Log Out</button>
-        </form>
-      {% else %}
-        <a href="{% url 'login' %}">Log In</a>
-      {% endif %}
-    </div>
+    
+    {% if user.is_authenticated %}
+      <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="login-button">Log Out</button>
+      </form>
+    {% else %}
+        <a href="{% url 'login' %}" class="login-button">Log In</a>
+    {% endif %}
   </div>
 
   <!-- Content Block for Other Templates to Extend -->
   {% block content %}
   {% endblock %}
-
-  <script>
-    // JavaScript function to toggle the dropdown menu visibility
-    function toggleDropdown() {
-      const dropdown = document.getElementById('dropdownMenu');
-      dropdown.classList.toggle('active');
-    }
-
-    // Close the dropdown if clicked outside
-    window.onclick = function(event) {
-      if (!event.target.matches('.gear-icon')) {
-        const dropdown = document.getElementById('dropdownMenu');
-        if (dropdown.classList.contains('active')) {
-          dropdown.classList.remove('active');
-        }
-      }
-    }
-  </script>
 
 </body>
 </html>
