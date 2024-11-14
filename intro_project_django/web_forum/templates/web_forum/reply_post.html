@@ -16,15 +16,17 @@
     </div>
 
     <!-- Reply Form Section -->
+    {% if request.user.is_authenticated %}
     <div class="reply-form">
         <label for="comment">Reply to</label>
-        <form method="post" action="{% url 'reply' %}">
+        <form method="post" action="{% url 'reply' post.id %}">
             {% csrf_token %}
             <textarea name="comment" id="comment" placeholder="Type comment here" maxlength="1000"></textarea>
             <div class="char-count">0 / 1000</div>
             <button type="submit" class="add-comment-button">Add Comment</button>
         </form>
     </div>
+    {% endif %}
 
     <!-- Comments Section -->
     <div class="comments">

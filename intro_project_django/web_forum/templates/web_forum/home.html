@@ -5,15 +5,19 @@
 <div class="posts-container">
     {% for post in posts %}
         <div class="post">
+            <a href="{% url 'reply' post.id %}" style="text-decoration: none;">
                 <div class="post-header">
                     <span class="author">{{ post.user.username }}</span>
                     <span class="date">{{ post.created_at|timesince }} ago</span>
                 </div>
                 <p class="content">{{ post.contents }}</p>
 
+                {% if request.user.is_authenticated %}
                 <div class="reply-button">
                     <a href="{% url 'reply' post.id %}" class="reply-post-button">Reply</a>
                 </div>
+                {% endif %}
+            </a>
         </div>
     {% empty %}
         <p>No posts available.</p>
