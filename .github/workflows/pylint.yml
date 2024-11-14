@@ -22,4 +22,4 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py') --ignore=migrations --disable=C0103
+        pylint --ignore=intro_project_django/web_forum/migrations,get-pip.py --disable=C0103 .

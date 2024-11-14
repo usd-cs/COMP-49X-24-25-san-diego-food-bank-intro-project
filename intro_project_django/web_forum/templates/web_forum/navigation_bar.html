@@ -30,6 +30,12 @@
       text-align: center;
       font-size: 24px;
       font-weight: bold;
+      position: relative;
+    }
+
+    .header a {
+      color: inherit;  /* Inherit the color from the parent element */
+      text-decoration: none;  /* Remove underline */
     }
     
     /* Gear icon styling (placeholder for actual icon) */
@@ -40,19 +46,70 @@
       font-size: 24px;
       cursor: pointer;
     }
+
+    /* Dropdown menu styling */
+    .dropdown {
+      display: none; /* Hidden by default */
+      position: absolute;
+      right: 20px;
+      top: 40px;
+      background-color: white;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .dropdown a {
+      text-decoration: none;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+
+    /* Show the dropdown when active */
+    .dropdown.active {
+      display: block;
+    }
   </style>
 </head>
 <body>
 
   <!-- Header Section -->
   <div class="header">
-    Web Forum
-    <span class="gear-icon">⚙️</span> <!-- Placeholder gear icon (can replace with actual image or font icon) -->
+    <a href="{% url 'home' %}">Web Forum</a>
+    <!-- Settings icon button -->
+    <span class="gear-icon" onclick="toggleDropdown()">⚙️</span>
+
+    <!-- Dropdown menu for login/logout -->
+    <div id="dropdownMenu" class="dropdown">
+      {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Log Out</a>
+      {% else %}
+        <a href="{% url 'login' %}">Log In</a>
+      {% endif %}
+    </div>
   </div>
 
   <!-- Content Block for Other Templates to Extend -->
   {% block content %}
   {% endblock %}
+
+  <script>
+    // JavaScript function to toggle the dropdown menu visibility
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdownMenu');
+      dropdown.classList.toggle('active');
+    }
+
+    // Close the dropdown if clicked outside
+    window.onclick = function(event) {
+      if (!event.target.matches('.gear-icon')) {
+        const dropdown = document.getElementById('dropdownMenu');
+        if (dropdown.classList.contains('active')) {
+          dropdown.classList.remove('active');
+        }
+      }
+    }
+  </script>
 
 </body>
 </html>

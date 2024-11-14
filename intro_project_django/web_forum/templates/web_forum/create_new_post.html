@@ -1,0 +1,35 @@
+{% extends 'web_forum/navigation_bar.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/create_new_post.css' %}">
+
+<div class="create-post-container">
+    <a href="{% url 'home' %}" class="back-button">&larr;</a>
+    <div class="post-form">
+        <form method="post" action="{% url 'create post' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea name="content" class="post-input" placeholder="Type your post here" maxlength="1000"></textarea>
+                <div class="char-count">0 / 1000</div>
+            </div>
+            <button type="submit" class="add-post-button">Add Post</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const postInput = document.querySelector('.post-input');
+    const charCount = document.querySelector('.char-count');
+
+    postInput.addEventListener('input', () => {
+        // Update character count
+        charCount.textContent = `${postInput.value.length} / 1000`;
+
+        // Autosize the textarea based on content
+        postInput.style.height = 'auto';
+        postInput.style.height = postInput.scrollHeight + 'px';
+    });
+</script>
+
+{% endblock %}

@@ -3,6 +3,11 @@
     padding: 20px;
 }
 
+.date {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .post {
     background-color: #f5f5f5;
     padding: 15px;
@@ -34,3 +39,22 @@
 .create-post-button:hover, .load-comments-button:hover {
     background-color: #45a049;
 }
+
+.reply-button {
+    text-align: right;
+    margin-top: 10px;
+ }
+ 
+ .reply-post-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+ }
+ 
+ .reply-post-button:hover {
+    background-color: #45a049;
+ }
