@@ -1,7 +1,7 @@
 """Temp docstring for linting"""
 
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Post
@@ -32,9 +32,10 @@ def home_view(request):
     posts = Post.objects.all().order_by('-created_at')
     return render(request, "web_forum/home.html", {'posts' : posts})
 
-def post_view(request):
+def post_view(request, post_id):
     """Placeholder view for viewing a post."""
-    return render(request, "web_forum/single_post.html", {"post": post_object})
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, "web_forum/single_post.html", {'post': post})
 
 """Implementing this next"""
 def loaded_comments_view(request):
