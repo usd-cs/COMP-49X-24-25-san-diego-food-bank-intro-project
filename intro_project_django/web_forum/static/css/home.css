@@ -44,10 +44,12 @@
     background-color: #45a049;
 }
 
-.reply-button {
-    text-align: right;
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     margin-top: 10px;
- }
+}
  
  .reply-post-button {
     display: inline-block;
@@ -61,4 +63,19 @@
  
  .reply-post-button:hover {
     background-color: #45a049;
+ }
+
+ .delete-post-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: red;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-right: 10px;
+ }
+
+ .delete-post-button:hover{
+    background-color: darkred;
  }

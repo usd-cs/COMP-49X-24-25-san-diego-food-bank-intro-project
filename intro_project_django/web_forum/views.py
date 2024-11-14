@@ -41,11 +41,17 @@ def reply_view(request, post_id):
     post = get_object_or_404(Post, id = post_id)
     comments = Comment.objects.filter(post_id=post_id).order_by('-created_at')
     if request.method == 'POST':
-        content = request.POST.get('comment')
-        if content:
-            comment_info = Comment(contents=content, user_id = request.user.id, post_id=post_id)
-            comment_info.save()
+      content = request.POST.get('comment')
+      if content:
+        comment_info = Comment(contents=content, user_id = request.user.id, post_id=post_id)
+        comment_info.save()
     return render(request, "web_forum/reply_post.html", {'post': post, 'comments': comments})
+
+def delete_post_view(request, post_id):
+    """Deletes post from db then returns to home page with updated feed"""
+    post = get_object_or_404(Post, id = post_id)
+    post.delete()
+    return redirect('home')
 
 def create_post_view(request):
     """Page for creating a new post. The add post button adds the 
