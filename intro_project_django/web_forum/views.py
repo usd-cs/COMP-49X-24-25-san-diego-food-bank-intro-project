@@ -29,7 +29,8 @@ def navigation_bar(request):
 
 def home_view(request):
     """Placeholder view for the home page."""
-    return render(request, "web_forum/home.html", {})
+    posts = Post.objects.all().order_by('-created_at')
+    return render(request, "web_forum/home.html", {'posts' : posts})
 
 def post_view(request):
     """Placeholder view for viewing a post."""
@@ -42,7 +43,7 @@ def create_post_view(request):
     if request.method == 'POST':
         content = request.POST.get('content')
         if content:
-            post = Post(contents=content)
+            post = Post(contents=content, user_id = 2)
             post.save()
             return redirect('home')  # Redirect to home page after creating a post
     # Render the create post page if GET request
