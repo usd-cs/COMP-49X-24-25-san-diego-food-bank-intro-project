@@ -9,19 +9,19 @@
     <!-- Main Post Section -->
     <div class="post">
         <div class="post-header">
-            <span class="author">{{ post.author }}</span>
-            <span class="date">{{ post.date|timesince }} ago</span>
+            <span class="author">{{ post.user.username }}</span>
+            <span class="date">{{ post.created_at|timesince }} ago</span>
         </div>
-        <p class="content">{{ post.content }}</p>
+        <p class="content">{{ post.contents }}</p>
     </div>
 
     <!-- Reply Form Section -->
     <div class="reply-form">
         <label for="comment">Reply to</label>
-        <form method="post" action="{% url 'add_comment' post.id %}">
+        <form method="post" action="{% url 'reply' %}">
             {% csrf_token %}
-            <textarea name="comment" id="comment" placeholder="Autosize height based on content lines" maxlength="100"></textarea>
-            <div class="char-count">0 / 100</div>
+            <textarea name="comment" id="comment" placeholder="Type comment here" maxlength="1000"></textarea>
+            <div class="char-count">0 / 1000</div>
             <button type="submit" class="add-comment-button">Add Comment</button>
         </form>
     </div>
@@ -31,10 +31,10 @@
         {% for comment in comments %}
             <div class="comment">
                 <div class="comment-header">
-                    <span class="author">{{ comment.author }}</span>
-                    <span class="date">{{ comment.date|timesince }} ago</span>
+                    <span class="author">{{ comment.user.username }}</span>
+                    <span class="date">{{ comment.created_at|timesince }} ago</span>
                 </div>
-                <p class="content">{{ comment.content }}</p>
+                <p class="content">{{ comment.contents }}</p>
             </div>
         {% empty %}
             <p>No comments yet.</p>
@@ -47,7 +47,7 @@
     const charCount = document.querySelector('.char-count');
 
     commentInput.addEventListener('input', () => {
-        charCount.textContent = `${commentInput.value.length} / 100`;
+        charCount.textContent = `${commentInput.value.length} / 1000`;
         commentInput.style.height = 'auto';
         commentInput.style.height = commentInput.scrollHeight + 'px';
     });
