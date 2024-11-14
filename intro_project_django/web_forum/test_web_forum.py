@@ -1,8 +1,6 @@
 from django.test import TestCase
 from .models import User, Post, Comment
 from django.urls import reverse
-import django
-from django.conf import settings
 
 """Tests for web forum app"""
 
