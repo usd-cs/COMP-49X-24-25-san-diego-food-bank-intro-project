@@ -14,7 +14,7 @@ def login_view(request):
     validate the user's credentials and log them in, then redirect them to the home page.
     """
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
@@ -47,7 +47,7 @@ def create_post_view(request):
     if request.method == 'POST':
         content = request.POST.get('content')
         if content:
-            post = Post(contents=content)
+            post = Post(contents=content, user_id = request.user.id)
             post.save()
             return redirect('home')  # Redirect to home page after creating a post
     # Render the create post page if GET request
