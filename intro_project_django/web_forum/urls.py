@@ -12,4 +12,5 @@ urlpatterns = [
     path("login/", views.login_view, name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path('reply/', views.reply_view, name='reply'),
+    path('comment/delete/<int:comment_id>/', views.delete_comment_view, name="delete_comment")
 ]

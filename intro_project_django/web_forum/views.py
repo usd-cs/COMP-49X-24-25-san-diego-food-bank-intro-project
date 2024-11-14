@@ -1,10 +1,10 @@
 """Temp docstring for linting"""
 
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Post
+from .models import Post, Comment
 
 def login_view(request):
     """
@@ -52,3 +52,11 @@ def create_post_view(request):
             return redirect('home')  # Redirect to home page after creating a post
     # Render the create post page if GET request
     return render(request, 'web_forum/create_new_post.html')
+
+def delete_comment_view(request, comment_id):
+    if request.method == 'POST':
+        comment = get_object_or_404(Comment, id='comment_id')
+
+        if request.user == comment.user or request.user.admin:
+            comment.delete()
+            
