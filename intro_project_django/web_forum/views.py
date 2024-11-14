@@ -35,5 +35,13 @@ def post_view(request):
     return render(request, HttpResponse("This is a post view."))
 
 def create_post_view(request):
-    """Placeholder view for creating a new post."""
-    return render(request, HttpResponse("This is the create post view."))
+    """Page for creating a new post. The add post button adds the 
+    inputted text to the database as a post object. Return to home
+    page after adding post."""
+    # if request.method == 'POST':
+    #     content = request.POST.get('content')
+    #     if content:
+    #         Post.objects.create(content=content)
+    #         return redirect('home')  # Redirect to home page after creating a post
+    # Render the create post page if GET request
+    return render(request, 'web_forum/create_new_post.html')
