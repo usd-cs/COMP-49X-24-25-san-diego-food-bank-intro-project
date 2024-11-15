@@ -54,7 +54,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       env:
-        DJANGO_SETTINGS_MODULE: ./intro_project_django/intro_project_django/settings.py  # Possibly incorrect
+        DJANGO_SETTINGS_MODULE: intro_project_django.settings  # Possibly incorrect
         DATABASE_URL: postgres://postgres:postgres@localhost:5432/sb_foodbank_intro_project_database
       run: |
          python ./intro_project_django/manage.py test web_forum
